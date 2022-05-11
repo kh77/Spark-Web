@@ -16,6 +16,11 @@ public class GenericResponse {
         this.message = message;
     }
 
+    public GenericResponse(StatusResponse status, String message, JsonElement data) {
+        this(status,message);
+        this.data = data;
+    }
+
     public StatusResponse getStatus() {
         return status;
     }

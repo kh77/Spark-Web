@@ -42,7 +42,11 @@ public class EmployeeManagement {
         get("/employees/:id", (request, response) -> {
             Employee employee = employeeMap.get(Long.valueOf(request.params(":id")));
             if (employee != null) {
-                return "Name: " + employee.getName() + ", Department: " + employee.getDepartment();
+                return new Gson()
+                        .toJson(new GenericResponse(
+                                SUCCESS,"",
+                                new Gson().toJsonTree(employee) )
+                        );
             }
             return getErrorStatus(response);
         });
